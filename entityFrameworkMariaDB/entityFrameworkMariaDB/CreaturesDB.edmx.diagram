@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6dbcafb14a5949bf9e2c1f6665bbb06b" Name="Diagram1" ZoomLevel="117">
+        <EntityTypeShape EntityType="creaturesModel.account" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="creaturesModel.caughtcreature" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="creaturesModel.creature" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="creaturesModel.trainer" Width="1.5" PointX="2.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="creaturesModel.type" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="creaturesModel.account_public" Width="1.5" PointX="14.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="creaturesModel.type_super_effective_against" Width="2" PointX="13.375" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="creaturesModel.FK_character_account" ManuallyRouted="false" />
+        <AssociationConnector Association="creaturesModel.creatureNameFK" ManuallyRouted="false" />
+        <AssociationConnector Association="creaturesModel.TrainerNameFK" ManuallyRouted="false" />
+        <AssociationConnector Association="creaturesModel.creature_types" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="creaturesModel.ability" Width="2.125" PointX="7.5" PointY="7.75" />
+        <EntityTypeShape EntityType="creaturesModel.ability_effect" Width="2.125" PointX="5.25" PointY="12.125" />
+        <EntityTypeShape EntityType="creaturesModel.ability_effect_category" Width="2.125" PointX="2.375" PointY="12.75" />
+        <AssociationConnector Association="creaturesModel.FK_ability_ability_effect" />
+        <AssociationConnector Association="creaturesModel.FK_ability_type" />
+        <AssociationConnector Association="creaturesModel.FK_ability_effect_ability_effect_type" />
+        <EntityTypeShape EntityType="creaturesModel.creature_evolution" Width="1.5" PointX="5.25" PointY="16.125" />
+        <AssociationConnector Association="creaturesModel.FK_creature_evolution_creature" />
+        <AssociationConnector Association="creaturesModel.FK_creature_evolution_creature_2" />
+        <AssociationConnector Association="creaturesModel.type_counter" />
+        <EntityTypeShape EntityType="creaturesModel.caughtcreature_ability" Width="1.5" PointX="10.375" PointY="5" />
+        <AssociationConnector Association="creaturesModel.FK_caughtcreature_ability_ability" />
+        <AssociationConnector Association="creaturesModel.FK__caughtcreature" />
+        <EntityTypeShape EntityType="creaturesModel.friendship" Width="1.5" PointX="3" PointY="4.625" />
+        <AssociationConnector Association="creaturesModel.FK_friendship_account" />
+        <AssociationConnector Association="creaturesModel.FK_friendship_account_friend" />
+        <EntityTypeShape EntityType="creaturesModel.trainer_battle" Width="1.5" PointX="4.875" PointY="19.375" />
+        <AssociationConnector Association="creaturesModel.FK_trainer_battle_trainer" />
+        <AssociationConnector Association="creaturesModel.FK_trainer_battle_trainer_oponent" />
+        <AssociationConnector Association="creaturesModel.FK_trainer_battle_trainer_winner" />
+        <EntityTypeShape EntityType="creaturesModel.creature_learns_ability" Width="1.5" PointX="10.375" PointY="8.125" />
+        <AssociationConnector Association="creaturesModel.FK_creature_learns_ability_ability" />
+        <AssociationConnector Association="creaturesModel.FK_creature_learns_ability_creature" />
+        <EntityTypeShape EntityType="creaturesModel.whisper" Width="1.5" PointX="3" PointY="15.625" />
+        <AssociationConnector Association="creaturesModel.FK_whisper_account" />
+        <AssociationConnector Association="creaturesModel.FK_whisper_account_2" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

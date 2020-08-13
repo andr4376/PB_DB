@@ -1,0 +1,626 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="creaturesModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ability">
+    <Key>
+      <PropertyRef Name="AbilityName" />
+    </Key>
+    <Property Name="AbilityName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Damage" Type="utinyint" Nullable="false" />
+    <Property Name="Accuracy" Type="utinyint" Nullable="false" />
+    <Property Name="MaxUses" Type="utinyint" Nullable="false" />
+    <Property Name="IsPhysical" Type="bit" Nullable="false" />
+    <Property Name="TypeName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EffectName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ability_effect">
+    <Key>
+      <PropertyRef Name="EffectName" />
+    </Key>
+    <Property Name="EffectName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProcChance" Type="utinyint" Nullable="false" />
+    <Property Name="TurnsAffected" Type="utinyint" />
+    <Property Name="DamagePerTurn" Type="utinyint" />
+    <Property Name="EffectCategory" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ability_effect_category">
+    <Key>
+      <PropertyRef Name="EffectCategory" />
+    </Key>
+    <Property Name="EffectCategory" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="account">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Birthday" Type="date" Nullable="false" />
+    <Property Name="Firstname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DisplayName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="caughtcreature">
+    <Key>
+      <PropertyRef Name="CatchId" />
+    </Key>
+    <Property Name="CatchId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatureName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TrainerName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NickName" Type="varchar" MaxLength="50" />
+    <Property Name="XP" Type="int" Nullable="false" />
+    <Property Name="CurrentHealth" Type="int" />
+    <Property Name="Sex" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="caughtcreature_ability">
+    <Key>
+      <PropertyRef Name="CatchId" />
+      <PropertyRef Name="AbilityName" />
+    </Key>
+    <Property Name="CatchId" Type="int" Nullable="false" />
+    <Property Name="AbilityName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UseCount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="creature">
+    <Key>
+      <PropertyRef Name="CreatureName" />
+    </Key>
+    <Property Name="CreatureName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Height" Type="float" Nullable="false" />
+    <Property Name="Weight" Type="float" Nullable="false" />
+    <Property Name="Health" Type="utinyint" Nullable="false" />
+    <Property Name="Strenght" Type="utinyint" Nullable="false" />
+    <Property Name="Agility" Type="utinyint" Nullable="false" />
+    <Property Name="Intelligence" Type="utinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="creature_evolution">
+    <Key>
+      <PropertyRef Name="CreatureName" />
+      <PropertyRef Name="EvolutionName" />
+    </Key>
+    <Property Name="CreatureName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EvolutionName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EvolutionLevel" Type="int" />
+  </EntityType>
+  <EntityType Name="creature_learns_ability">
+    <Key>
+      <PropertyRef Name="CreatureName" />
+      <PropertyRef Name="AbilityName" />
+    </Key>
+    <Property Name="CreatureName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AbilityName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LearnLevel" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="creature_types">
+    <Key>
+      <PropertyRef Name="CreatureName" />
+      <PropertyRef Name="TypeName" />
+    </Key>
+    <Property Name="CreatureName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TypeName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="friendship">
+    <Key>
+      <PropertyRef Name="AccountId" />
+      <PropertyRef Name="FriendId" />
+    </Key>
+    <Property Name="AccountId" Type="int" Nullable="false" />
+    <Property Name="FriendId" Type="int" Nullable="false" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="trainer">
+    <Key>
+      <PropertyRef Name="TrainerName" />
+    </Key>
+    <Property Name="TrainerName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="AccountId" Type="int" Nullable="false" />
+    <Property Name="CreationDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="trainer_battle">
+    <Key>
+      <PropertyRef Name="BattleId" />
+    </Key>
+    <Property Name="BattleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HostName" Type="varchar" MaxLength="50" />
+    <Property Name="OpponentName" Type="varchar" MaxLength="50" />
+    <Property Name="WinnerName" Type="varchar" MaxLength="50" />
+    <Property Name="StartTime" Type="datetime" Precision="0" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" Precision="0" />
+    <Property Name="BattleStatus" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="type">
+    <Key>
+      <PropertyRef Name="TypeName" />
+    </Key>
+    <Property Name="TypeName" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="type_counter">
+    <Key>
+      <PropertyRef Name="TypeName" />
+      <PropertyRef Name="Countered_by_type" />
+    </Key>
+    <Property Name="TypeName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Countered_by_type" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="whisper">
+    <Key>
+      <PropertyRef Name="WhisperId" />
+    </Key>
+    <Property Name="WhisperId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FromId" Type="int" Nullable="false" />
+    <Property Name="ToId" Type="int" Nullable="false" />
+    <Property Name="Text" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="TimeStamp" Type="datetime" Precision="0" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.creatures.account_public' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="account_public">
+    <Key>
+      <PropertyRef Name="accountid" />
+      <PropertyRef Name="email" />
+      <PropertyRef Name="birthday" />
+      <PropertyRef Name="firstname" />
+      <PropertyRef Name="lastname" />
+      <PropertyRef Name="displayname" />
+    </Key>
+    <Property Name="accountid" Type="int" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="birthday" Type="date" Nullable="false" />
+    <Property Name="firstname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="lastname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="displayname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Age" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.creatures.type_super_effective_against' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="type_super_effective_against">
+    <Key>
+      <PropertyRef Name="TypeName" />
+    </Key>
+    <Property Name="TypeName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Good Against" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="creatureNameFK">
+    <End Role="creature" Type="Self.creature" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="caughtcreature" Type="Self.caughtcreature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="creature">
+        <PropertyRef Name="CreatureName" />
+      </Principal>
+      <Dependent Role="caughtcreature">
+        <PropertyRef Name="CreatureName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__caughtcreature">
+    <End Role="caughtcreature" Type="Self.caughtcreature" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="caughtcreature_ability" Type="Self.caughtcreature_ability" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="caughtcreature">
+        <PropertyRef Name="CatchId" />
+      </Principal>
+      <Dependent Role="caughtcreature_ability">
+        <PropertyRef Name="CatchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__type">
+    <End Role="type" Type="Self.type" Multiplicity="1" />
+    <End Role="type_counter" Type="Self.type_counter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="type">
+        <PropertyRef Name="TypeName" />
+      </Principal>
+      <Dependent Role="type_counter">
+        <PropertyRef Name="TypeName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ability_ability_effect">
+    <End Role="ability_effect" Type="Self.ability_effect" Multiplicity="0..1" />
+    <End Role="ability" Type="Self.ability" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ability_effect">
+        <PropertyRef Name="EffectName" />
+      </Principal>
+      <Dependent Role="ability">
+        <PropertyRef Name="EffectName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ability_effect_ability_effect_type">
+    <End Role="ability_effect_category" Type="Self.ability_effect_category" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ability_effect" Type="Self.ability_effect" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ability_effect_category">
+        <PropertyRef Name="EffectCategory" />
+      </Principal>
+      <Dependent Role="ability_effect">
+        <PropertyRef Name="EffectCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ability_type">
+    <End Role="type" Type="Self.type" Multiplicity="1" />
+    <End Role="ability" Type="Self.ability" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="type">
+        <PropertyRef Name="TypeName" />
+      </Principal>
+      <Dependent Role="ability">
+        <PropertyRef Name="TypeName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_caughtcreature_ability_ability">
+    <End Role="ability" Type="Self.ability" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="caughtcreature_ability" Type="Self.caughtcreature_ability" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ability">
+        <PropertyRef Name="AbilityName" />
+      </Principal>
+      <Dependent Role="caughtcreature_ability">
+        <PropertyRef Name="AbilityName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_character_account">
+    <End Role="account" Type="Self.account" Multiplicity="1" />
+    <End Role="trainer" Type="Self.trainer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="trainer">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_creature_evolution_creature">
+    <End Role="creature" Type="Self.creature" Multiplicity="1" />
+    <End Role="creature_evolution" Type="Self.creature_evolution" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="creature">
+        <PropertyRef Name="CreatureName" />
+      </Principal>
+      <Dependent Role="creature_evolution">
+        <PropertyRef Name="CreatureName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_creature_evolution_creature_2">
+    <End Role="creature" Type="Self.creature" Multiplicity="1" />
+    <End Role="creature_evolution" Type="Self.creature_evolution" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="creature">
+        <PropertyRef Name="CreatureName" />
+      </Principal>
+      <Dependent Role="creature_evolution">
+        <PropertyRef Name="EvolutionName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_creature_learns_ability_ability">
+    <End Role="ability" Type="Self.ability" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="creature_learns_ability" Type="Self.creature_learns_ability" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ability">
+        <PropertyRef Name="AbilityName" />
+      </Principal>
+      <Dependent Role="creature_learns_ability">
+        <PropertyRef Name="AbilityName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_creature_learns_ability_creature">
+    <End Role="creature" Type="Self.creature" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="creature_learns_ability" Type="Self.creature_learns_ability" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="creature">
+        <PropertyRef Name="CreatureName" />
+      </Principal>
+      <Dependent Role="creature_learns_ability">
+        <PropertyRef Name="CreatureName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_creature_types_creature">
+    <End Role="creature" Type="Self.creature" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="creature_types" Type="Self.creature_types" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="creature">
+        <PropertyRef Name="CreatureName" />
+      </Principal>
+      <Dependent Role="creature_types">
+        <PropertyRef Name="CreatureName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_creature_types_type">
+    <End Role="type" Type="Self.type" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="creature_types" Type="Self.creature_types" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="type">
+        <PropertyRef Name="TypeName" />
+      </Principal>
+      <Dependent Role="creature_types">
+        <PropertyRef Name="TypeName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_friendship_account">
+    <End Role="account" Type="Self.account" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="friendship" Type="Self.friendship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="friendship">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_friendship_account_friend">
+    <End Role="account" Type="Self.account" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="friendship" Type="Self.friendship" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="friendship">
+        <PropertyRef Name="FriendId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trainer_battle_trainer">
+    <End Role="trainer" Type="Self.trainer" Multiplicity="0..1" />
+    <End Role="trainer_battle" Type="Self.trainer_battle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trainer">
+        <PropertyRef Name="TrainerName" />
+      </Principal>
+      <Dependent Role="trainer_battle">
+        <PropertyRef Name="HostName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trainer_battle_trainer_oponent">
+    <End Role="trainer" Type="Self.trainer" Multiplicity="0..1" />
+    <End Role="trainer_battle" Type="Self.trainer_battle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trainer">
+        <PropertyRef Name="TrainerName" />
+      </Principal>
+      <Dependent Role="trainer_battle">
+        <PropertyRef Name="OpponentName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_trainer_battle_trainer_winner">
+    <End Role="trainer" Type="Self.trainer" Multiplicity="0..1" />
+    <End Role="trainer_battle" Type="Self.trainer_battle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trainer">
+        <PropertyRef Name="TrainerName" />
+      </Principal>
+      <Dependent Role="trainer_battle">
+        <PropertyRef Name="WinnerName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WeakAgainst">
+    <End Role="type" Type="Self.type" Multiplicity="1" />
+    <End Role="type_counter" Type="Self.type_counter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="type">
+        <PropertyRef Name="TypeName" />
+      </Principal>
+      <Dependent Role="type_counter">
+        <PropertyRef Name="Countered_by_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_whisper_account">
+    <End Role="account" Type="Self.account" Multiplicity="1" />
+    <End Role="whisper" Type="Self.whisper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="whisper">
+        <PropertyRef Name="FromId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_whisper_account_2">
+    <End Role="account" Type="Self.account" Multiplicity="1" />
+    <End Role="whisper" Type="Self.whisper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="account">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="whisper">
+        <PropertyRef Name="ToId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TrainerNameFK">
+    <End Role="trainer" Type="Self.trainer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="caughtcreature" Type="Self.caughtcreature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trainer">
+        <PropertyRef Name="TrainerName" />
+      </Principal>
+      <Dependent Role="caughtcreature">
+        <PropertyRef Name="TrainerName" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="AcceptFriendRequestProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="creatures">
+    <Parameter Name="acc" Type="int" Mode="In" />
+    <Parameter Name="friend" Type="int" Mode="In" />
+  </Function>
+  <Function Name="CreateAccountProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="creatures">
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="pw" Type="varchar" Mode="In" />
+    <Parameter Name="birthdate" Type="date" Mode="In" />
+    <Parameter Name="firstname" Type="varchar" Mode="In" />
+    <Parameter Name="lastname" Type="varchar" Mode="In" />
+    <Parameter Name="displayname" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="LoginProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="creatures">
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="pw" Type="varchar" Mode="In" />
+    <Parameter Name="accId" Type="int" Mode="Out" />
+  </Function>
+  <EntityContainer Name="creaturesModelStoreContainer">
+    <EntitySet Name="ability" EntityType="Self.ability" Schema="creatures" store:Type="Tables" />
+    <EntitySet Name="ability_effect" EntityType="Self.ability_effect" Schema="creatures" store:Type="Tables" />
+    <EntitySet Name="ability_effect_category" EntityType="Self.ability_effect_category" Schema="creatures" store:Type="Tables" />
+    <EntitySet Name="account" EntityType="Self.account" Schema="creatures" store:Type="Tables" />
+    <EntitySet Name="caughtcreature" EntityType="Self.caughtcreature" Schema="creatures" store:Type="Tables" />
+    <EntitySet Name="caughtcreature_ability" EntityType="Self.caughtcreature_ability" Schema="creatures" store:Type="Tables" />
+    <EntitySet Name="creature" EntityType="Self.creature" Schema="creatures" store:Type="Tables" />
+    <EntitySet Name="creature_evolution" EntityType="Self.creature_evolution" Schema="creatures" store:Type="Tables" />
+    <EntitySet Name="creature_learns_ability" EntityType="Self.creature_learns_ability" Schema="creatures" store:Type="Tables" />
+    <EntitySet Name="creature_types" EntityType="Self.creature_types" Schema="creatures" store:Type="Tables" />
+    <EntitySet Name="friendship" EntityType="Self.friendship" Schema="creatures" store:Type="Tables" />
+    <EntitySet Name="trainer" EntityType="Self.trainer" Schema="creatures" store:Type="Tables" />
+    <EntitySet Name="trainer_battle" EntityType="Self.trainer_battle" Schema="creatures" store:Type="Tables" />
+    <EntitySet Name="type" EntityType="Self.type" Schema="creatures" store:Type="Tables" />
+    <EntitySet Name="type_counter" EntityType="Self.type_counter" Schema="creatures" store:Type="Tables" />
+    <EntitySet Name="whisper" EntityType="Self.whisper" Schema="creatures" store:Type="Tables" />
+    <EntitySet Name="account_public" EntityType="Self.account_public" store:Type="Views" store:Schema="creatures">
+      <DefiningQuery>SELECT
+`account_public`.`accountid`, 
+`account_public`.`email`, 
+`account_public`.`birthday`, 
+`account_public`.`firstname`, 
+`account_public`.`lastname`, 
+`account_public`.`displayname`, 
+`account_public`.`Age`
+FROM `account_public` AS `account_public`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="type_super_effective_against" EntityType="Self.type_super_effective_against" store:Type="Views" store:Schema="creatures">
+      <DefiningQuery>SELECT
+`type_super_effective_against`.`TypeName`, 
+`type_super_effective_against`.`Good Against`
+FROM `type_super_effective_against` AS `type_super_effective_against`</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="creatureNameFK" Association="Self.creatureNameFK">
+      <End Role="creature" EntitySet="creature" />
+      <End Role="caughtcreature" EntitySet="caughtcreature" />
+    </AssociationSet>
+    <AssociationSet Name="FK__caughtcreature" Association="Self.FK__caughtcreature">
+      <End Role="caughtcreature" EntitySet="caughtcreature" />
+      <End Role="caughtcreature_ability" EntitySet="caughtcreature_ability" />
+    </AssociationSet>
+    <AssociationSet Name="FK__type" Association="Self.FK__type">
+      <End Role="type" EntitySet="type" />
+      <End Role="type_counter" EntitySet="type_counter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ability_ability_effect" Association="Self.FK_ability_ability_effect">
+      <End Role="ability_effect" EntitySet="ability_effect" />
+      <End Role="ability" EntitySet="ability" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ability_effect_ability_effect_type" Association="Self.FK_ability_effect_ability_effect_type">
+      <End Role="ability_effect_category" EntitySet="ability_effect_category" />
+      <End Role="ability_effect" EntitySet="ability_effect" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ability_type" Association="Self.FK_ability_type">
+      <End Role="type" EntitySet="type" />
+      <End Role="ability" EntitySet="ability" />
+    </AssociationSet>
+    <AssociationSet Name="FK_caughtcreature_ability_ability" Association="Self.FK_caughtcreature_ability_ability">
+      <End Role="ability" EntitySet="ability" />
+      <End Role="caughtcreature_ability" EntitySet="caughtcreature_ability" />
+    </AssociationSet>
+    <AssociationSet Name="FK_character_account" Association="Self.FK_character_account">
+      <End Role="account" EntitySet="account" />
+      <End Role="trainer" EntitySet="trainer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_creature_evolution_creature" Association="Self.FK_creature_evolution_creature">
+      <End Role="creature" EntitySet="creature" />
+      <End Role="creature_evolution" EntitySet="creature_evolution" />
+    </AssociationSet>
+    <AssociationSet Name="FK_creature_evolution_creature_2" Association="Self.FK_creature_evolution_creature_2">
+      <End Role="creature" EntitySet="creature" />
+      <End Role="creature_evolution" EntitySet="creature_evolution" />
+    </AssociationSet>
+    <AssociationSet Name="FK_creature_learns_ability_ability" Association="Self.FK_creature_learns_ability_ability">
+      <End Role="ability" EntitySet="ability" />
+      <End Role="creature_learns_ability" EntitySet="creature_learns_ability" />
+    </AssociationSet>
+    <AssociationSet Name="FK_creature_learns_ability_creature" Association="Self.FK_creature_learns_ability_creature">
+      <End Role="creature" EntitySet="creature" />
+      <End Role="creature_learns_ability" EntitySet="creature_learns_ability" />
+    </AssociationSet>
+    <AssociationSet Name="FK_creature_types_creature" Association="Self.FK_creature_types_creature">
+      <End Role="creature" EntitySet="creature" />
+      <End Role="creature_types" EntitySet="creature_types" />
+    </AssociationSet>
+    <AssociationSet Name="FK_creature_types_type" Association="Self.FK_creature_types_type">
+      <End Role="type" EntitySet="type" />
+      <End Role="creature_types" EntitySet="creature_types" />
+    </AssociationSet>
+    <AssociationSet Name="FK_friendship_account" Association="Self.FK_friendship_account">
+      <End Role="account" EntitySet="account" />
+      <End Role="friendship" EntitySet="friendship" />
+    </AssociationSet>
+    <AssociationSet Name="FK_friendship_account_friend" Association="Self.FK_friendship_account_friend">
+      <End Role="account" EntitySet="account" />
+      <End Role="friendship" EntitySet="friendship" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trainer_battle_trainer" Association="Self.FK_trainer_battle_trainer">
+      <End Role="trainer" EntitySet="trainer" />
+      <End Role="trainer_battle" EntitySet="trainer_battle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trainer_battle_trainer_oponent" Association="Self.FK_trainer_battle_trainer_oponent">
+      <End Role="trainer" EntitySet="trainer" />
+      <End Role="trainer_battle" EntitySet="trainer_battle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_trainer_battle_trainer_winner" Association="Self.FK_trainer_battle_trainer_winner">
+      <End Role="trainer" EntitySet="trainer" />
+      <End Role="trainer_battle" EntitySet="trainer_battle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WeakAgainst" Association="Self.FK_WeakAgainst">
+      <End Role="type" EntitySet="type" />
+      <End Role="type_counter" EntitySet="type_counter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_whisper_account" Association="Self.FK_whisper_account">
+      <End Role="account" EntitySet="account" />
+      <End Role="whisper" EntitySet="whisper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_whisper_account_2" Association="Self.FK_whisper_account_2">
+      <End Role="account" EntitySet="account" />
+      <End Role="whisper" EntitySet="whisper" />
+    </AssociationSet>
+    <AssociationSet Name="TrainerNameFK" Association="Self.TrainerNameFK">
+      <End Role="trainer" EntitySet="trainer" />
+      <End Role="caughtcreature" EntitySet="caughtcreature" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

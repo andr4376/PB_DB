@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="entriesdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="entries">
+    <Key>
+      <PropertyRef Name="EntryID" />
+    </Key>
+    <Property Name="EntryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Text" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" />
+    <Property Name="user" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="users" Relationship="entriesdbModel.FK_entries_users" FromRole="entries" ToRole="users" />
+  </EntityType>
+  <EntityType Name="files">
+    <Key>
+      <PropertyRef Name="FileId" />
+    </Key>
+    <Property Name="FileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="filename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="binary" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="entryid" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="entries" Relationship="entriesdbModel.FK_entries_users" FromRole="users" ToRole="entries" />
+  </EntityType>
+  <EntityContainer Name="entriesdbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="entries" EntityType="Self.entries" />
+    <EntitySet Name="files" EntityType="Self.files" />
+    <EntitySet Name="users" EntityType="Self.users" />
+    <EntitySet Name="newtesttable" EntityType="entriesdbModel.newtesttable" />
+    <AssociationSet Name="FK_entries_users" Association="entriesdbModel.FK_entries_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="entries" EntitySet="entries" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="newtesttable">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="randomVal" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_entries_users">
+    <End Type="entriesdbModel.users" Role="users" Multiplicity="1" />
+    <End Type="entriesdbModel.entries" Role="entries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="Username" />
+      </Principal>
+      <Dependent Role="entries">
+        <PropertyRef Name="user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

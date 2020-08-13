@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="creaturesModelStoreContainer" CdmEntityContainer="creaturesEntities">
+    <EntitySetMapping Name="account">
+      <EntityTypeMapping TypeName="creaturesModel.account">
+        <MappingFragment StoreEntitySet="account">
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="caughtcreature">
+      <EntityTypeMapping TypeName="creaturesModel.caughtcreature">
+        <MappingFragment StoreEntitySet="caughtcreature">
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="CurrentHealth" ColumnName="CurrentHealth" />
+          <ScalarProperty Name="CatchId" ColumnName="CatchId" />
+          <ScalarProperty Name="TrainerName" ColumnName="TrainerName" />
+          <ScalarProperty Name="CreatureName" ColumnName="CreatureName" />
+          <ScalarProperty Name="NickName" ColumnName="NickName" />
+          <ScalarProperty Name="XP" ColumnName="XP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="creature">
+      <EntityTypeMapping TypeName="creaturesModel.creature">
+        <MappingFragment StoreEntitySet="creature">
+          <ScalarProperty Name="Intelligence" ColumnName="Intelligence" />
+          <ScalarProperty Name="Agility" ColumnName="Agility" />
+          <ScalarProperty Name="Strenght" ColumnName="Strenght" />
+          <ScalarProperty Name="Health" ColumnName="Health" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="CreatureName" ColumnName="CreatureName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="trainer">
+      <EntityTypeMapping TypeName="creaturesModel.trainer">
+        <MappingFragment StoreEntitySet="trainer">
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="TrainerName" ColumnName="TrainerName" />
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="type">
+      <EntityTypeMapping TypeName="creaturesModel.type">
+        <MappingFragment StoreEntitySet="type">
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="account_public">
+      <EntityTypeMapping TypeName="creaturesModel.account_public">
+        <MappingFragment StoreEntitySet="account_public">
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="accountid" ColumnName="accountid" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="birthday" ColumnName="birthday" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="displayname" ColumnName="displayname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="type_super_effective_against">
+      <EntityTypeMapping TypeName="creaturesModel.type_super_effective_against">
+        <MappingFragment StoreEntitySet="type_super_effective_against">
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="Good_Against" ColumnName="Good Against" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="creature_types" TypeName="creaturesModel.creature_types" StoreEntitySet="creature_types">
+      <EndProperty Name="creature">
+        <ScalarProperty Name="CreatureName" ColumnName="CreatureName" />
+      </EndProperty>
+      <EndProperty Name="type">
+        <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="ability">
+      <EntityTypeMapping TypeName="creaturesModel.ability">
+        <MappingFragment StoreEntitySet="ability">
+          <ScalarProperty Name="EffectName" ColumnName="EffectName" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="IsPhysical" ColumnName="IsPhysical" />
+          <ScalarProperty Name="MaxUses" ColumnName="MaxUses" />
+          <ScalarProperty Name="Accuracy" ColumnName="Accuracy" />
+          <ScalarProperty Name="Damage" ColumnName="Damage" />
+          <ScalarProperty Name="AbilityName" ColumnName="AbilityName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ability_effect">
+      <EntityTypeMapping TypeName="creaturesModel.ability_effect">
+        <MappingFragment StoreEntitySet="ability_effect">
+          <ScalarProperty Name="EffectCategory" ColumnName="EffectCategory" />
+          <ScalarProperty Name="DamagePerTurn" ColumnName="DamagePerTurn" />
+          <ScalarProperty Name="TurnsAffected" ColumnName="TurnsAffected" />
+          <ScalarProperty Name="ProcChance" ColumnName="ProcChance" />
+          <ScalarProperty Name="EffectName" ColumnName="EffectName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ability_effect_category">
+      <EntityTypeMapping TypeName="creaturesModel.ability_effect_category">
+        <MappingFragment StoreEntitySet="ability_effect_category">
+          <ScalarProperty Name="EffectCategory" ColumnName="EffectCategory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="creature_evolution">
+      <EntityTypeMapping TypeName="creaturesModel.creature_evolution">
+        <MappingFragment StoreEntitySet="creature_evolution">
+          <ScalarProperty Name="EvolutionLevel" ColumnName="EvolutionLevel" />
+          <ScalarProperty Name="EvolutionName" ColumnName="EvolutionName" />
+          <ScalarProperty Name="CreatureName" ColumnName="CreatureName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="type_counter" TypeName="creaturesModel.type_counter" StoreEntitySet="type_counter">
+      <EndProperty Name="type1">
+        <ScalarProperty Name="TypeName" ColumnName="Countered_by_type" />
+      </EndProperty>
+      <EndProperty Name="type">
+        <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="caughtcreature_ability">
+      <EntityTypeMapping TypeName="creaturesModel.caughtcreature_ability">
+        <MappingFragment StoreEntitySet="caughtcreature_ability">
+          <ScalarProperty Name="UseCount" ColumnName="UseCount" />
+          <ScalarProperty Name="AbilityName" ColumnName="AbilityName" />
+          <ScalarProperty Name="CatchId" ColumnName="CatchId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CreateAccountProcedure" FunctionName="creaturesModel.Store.CreateAccountProcedure" />
+    <FunctionImportMapping FunctionImportName="LoginProcedure" FunctionName="creaturesModel.Store.LoginProcedure" />
+    <EntitySetMapping Name="friendship">
+      <EntityTypeMapping TypeName="creaturesModel.friendship">
+        <MappingFragment StoreEntitySet="friendship">
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="FriendId" ColumnName="FriendId" />
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="trainer_battle">
+      <EntityTypeMapping TypeName="creaturesModel.trainer_battle">
+        <MappingFragment StoreEntitySet="trainer_battle">
+          <ScalarProperty Name="BattleStatus" ColumnName="BattleStatus" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="WinnerName" ColumnName="WinnerName" />
+          <ScalarProperty Name="OpponentName" ColumnName="OpponentName" />
+          <ScalarProperty Name="HostName" ColumnName="HostName" />
+          <ScalarProperty Name="BattleId" ColumnName="BattleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="creature_learns_ability">
+      <EntityTypeMapping TypeName="creaturesModel.creature_learns_ability">
+        <MappingFragment StoreEntitySet="creature_learns_ability">
+          <ScalarProperty Name="LearnLevel" ColumnName="LearnLevel" />
+          <ScalarProperty Name="AbilityName" ColumnName="AbilityName" />
+          <ScalarProperty Name="CreatureName" ColumnName="CreatureName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AcceptFriendRequestProcedure" FunctionName="creaturesModel.Store.AcceptFriendRequestProcedure" />
+    <EntitySetMapping Name="whisper">
+      <EntityTypeMapping TypeName="creaturesModel.whisper">
+        <MappingFragment StoreEntitySet="whisper">
+          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="ToId" ColumnName="ToId" />
+          <ScalarProperty Name="FromId" ColumnName="FromId" />
+          <ScalarProperty Name="WhisperId" ColumnName="WhisperId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
