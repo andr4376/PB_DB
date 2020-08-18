@@ -12,17 +12,18 @@ namespace entityFrameworkMariaDB
         static void Main(string[] args)
         {
 
+            using (creaturesEntities db = new creaturesEntities())
+                PrintAccountInfo(db.account.Find(1));
 
-           
 
-            SignIn.Instance.LogIn("andr4376@gmail.com", "4376");
+            /*SignIn.Instance.LogIn("andr4376@gmail.com", "4376");
 
             if (SignIn.OK)
             {
                 using (creaturesEntities db = new creaturesEntities())
                     PrintAccountInfo(db.account.Find(SignIn.Instance.Account.AccountID));
             }
-
+            */
 
             Console.ReadKey();
         }
