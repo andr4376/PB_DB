@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Andr4\source\repos\entityFrameworkMariaDB\entityFrameworkMariaDB\CreaturesDB.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\code projects\PB_DB\entityFrameworkMariaDB\entityFrameworkMariaDB\CreaturesDB.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
